@@ -22,8 +22,27 @@ public class TicTacToeView {
            Return as a TicTacToeMove object. */
         
         // INSERT YOUR CODE HERE
+        int row = -1;
+        int column = -1;
+        TicTacToeMove nextMove = null;
         
-        return null; // remove this line later!
+        if (isXTurn) {
+            System.out.println("Player 1 (X) Move: ");
+            System.out.println("Enter the row and column numbers, seperated by a space: ");  
+        }
+        else {
+            System.out.println("Player 2 (O) Move: ");
+            System.out.println("Enter the row and column numbers, seperated by a space: ");
+        }
+        
+        //get the user's row and column
+        row = keyboard.nextInt();
+        column = keyboard.nextInt();
+                
+        //create TicTacToeMove object
+        nextMove = new TicTacToeMove(row, column);
+       
+        return nextMove;
 
     }
 

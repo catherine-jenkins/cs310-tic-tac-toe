@@ -117,7 +117,7 @@ public class TicTacToeModel {
         // INSERT YOUR CODE HERE******************************
         boolean isSquareValid = false;
         
-        if (row < size && col < size){
+        if (row < width && col < width){
             
             isSquareValid = true;
         }       
@@ -208,7 +208,7 @@ public class TicTacToeModel {
                     markIsWin = true;
                 }
             }
-            if (board[i][size - i -1] == mark){
+            if (board[i][width - i -1] == mark){
                 diagonalCounter2 += 1;
                 if (diagonalCounter2 == width){
                     markIsWin = true;
