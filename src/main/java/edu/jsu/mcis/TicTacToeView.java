@@ -22,6 +22,8 @@ public class TicTacToeView {
            Return as a TicTacToeMove object. */
         
         // INSERT YOUR CODE HERE
+
+        //initialize variables and objects
         int row = -1;
         int column = -1;
         TicTacToeMove nextMove = null;
@@ -43,7 +45,6 @@ public class TicTacToeView {
         nextMove = new TicTacToeMove(row, column);
        
         return nextMove;
-
     }
 
     public void showInputError() {

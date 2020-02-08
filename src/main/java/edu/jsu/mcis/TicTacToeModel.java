@@ -1,7 +1,7 @@
 package edu.jsu.mcis;
 
 public class TicTacToeModel {
-    
+     
     private Mark[][] board; /* Game board */
     private boolean xTurn;  /* True if X is current player */
     private int width;      /* Size of game board */
@@ -95,17 +95,20 @@ public class TicTacToeModel {
         // INSERT YOUR CODE HERE*********************************
         boolean isMarkMade = false;
         
-        if (isValidSquare(row, col) && !isSquareMarked(row, col)){
+        if ((isValidSquare(row, col))) {
             
-            if (xTurn){
-                board[row][col] = Mark.X;
-                xTurn = false;
+            if (!isSquareMarked(row, col)) {
+               
+                if (xTurn){
+                    board[row][col] = Mark.X;
+                    xTurn = false;
+                }
+                else{
+                    board[row][col] = Mark.O;
+                    xTurn = true;
+                }
+                isMarkMade = true;
             }
-            else{
-                board[row][col] = Mark.O;
-                xTurn = true;
-            }
-            isMarkMade = true;
         }
         return isMarkMade;
     }
@@ -115,12 +118,12 @@ public class TicTacToeModel {
         /* Return TRUE if the specified location is within the bounds of the board */
         
         // INSERT YOUR CODE HERE******************************
-        boolean isSquareValid = false;
+        boolean isSquareValid = true;
         
-        if (row < width && col < width){
+        if ((row > width - 1 || row < 0) || (col > width - 1 || col < 0)){
             
-            isSquareValid = true;
-        }       
+            isSquareValid = false;
+        }
 
         return isSquareValid;
         
@@ -137,7 +140,7 @@ public class TicTacToeModel {
             
             squareIsMarked = true;
         }
-
+        
         return squareIsMarked;
             
     }
@@ -224,9 +227,9 @@ public class TicTacToeModel {
         
         // INSERT YOUR CODE HERE
         boolean gameIsTie = false;
-        if (!isMarkWin(Mark.X) && !isMarkWin(Mark.O) && isGameOver()){
+        if (!isMarkWin(Mark.X) && !isMarkWin(Mark.O) && isGameover()){
             gameIsTie = true; 
-
+        }
         return gameIsTie;
         
     }
@@ -234,9 +237,18 @@ public class TicTacToeModel {
     public boolean isGameover() {
         
         /* Return TRUE if the game is over */
-        
-        return (Result.NONE != getResult());
-        
+        boolean gameIsOver = true;
+        for (int i = 0; i < width; i++){
+            for (int j = 0; j < width; j++){
+                if (board[i][j] == Mark.EMPTY){
+                    gameIsOver = false;
+                }  
+            } 
+        }
+        if (isMarkWin(Mark.X) || isMarkWin(Mark.O)){
+            gameIsOver = true;
+        }
+        return gameIsOver;   
     }
 
     public boolean isXTurn() {
@@ -263,10 +275,22 @@ public class TicTacToeModel {
         /* Output the board contents as a string (see examples) */
         
         // INSERT YOUR CODE HERE
+        for (int i = 0; i < width; i++){
+            output.append(i);
+        }
+        output.append("\n");
         
+        for (int i = 0; i < width; i++){
+            
+           output.append(i + " ");
+           
+           for (int j = 0; j < width; j++){
+               output.append(board[i][j]);
+            }
+           
+           output.append("\n");
+        }
         
         return output.toString();
-        
-    }
-    
+    }  
 }
